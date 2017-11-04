@@ -132,9 +132,25 @@ case $choice in
 			scp $usernamessh1@$sshdomainip:$document1name $path1
 
 			"2"|"2")
-			echo "What file do you want to ssh from remote machine?"
+			echo "What file do you want to ssh to remote machine?"
             echo "THIS MAY REQUIRE ADMIN PRIVLEDGES"
-			read localsshfile
+			echo ""
+			read $localsshfile
+			echo ""
+			echo "Local file: $localsshfile "
+			echo ""
+			echo "What is the user name for the remote machine? "
+			read $remoteusername
+			echo ""
+			echo "What is the remote machine domain IP? "
+			read $remotedomainip
+			echo ""
+			echo "Enter the path for the saved file (Ex. /home/johnny/Desktop"
+			read $savefilepath
+			echo ""
+			echo "Path: $savefilepath"
+			echo "Starting SSH"
+			scp $localsshfile $remoteusername@$remotedomainip:$savefilepath
 											                                        # Command NEEDED
 			"3"|"3")
 			break
@@ -159,7 +175,10 @@ case $choice in
 
 		"e"|"E")
 		echo "Restarting SSH services"
-		sudo service ssh restart
+		echo ""
+		echo 
+		sudo service ssh restart 
+		sudo service ssh status
 		;;
 
 		"f"|"F")
