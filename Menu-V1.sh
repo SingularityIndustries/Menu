@@ -3,15 +3,15 @@
 while :
 do
 echo "Main Menu:"
-echo -e "\t(1) Encrypting/ Decrypting A File"				#Done needs debugging
-echo -e "\t(2) SSH Menu"						#Working on it With debugging
-echo -e "\t(3) Reconnaissance (Nmap)"					#DONE
-echo -e "\t(4) Parsing Fields Of A Dump"				#N/A
-echo -e "\t(5) System Information"					#HALF WAY done
-echo -e "\t(6) Forensic Scripts"					#partial 
-echo -e "\t(7) Exploitation Menu"					#not there
-echo -e "\t(8) Post-Exploitation Menu"					#not there
-echo -e "\t(9) Firewall (IP tables)"
+echo -e "\t(1) Encrypting/ Decrypting A File"							#Done needs debugging
+echo -e "\t(2) SSH Menu"											#Clean up
+echo -e "\t(3) Reconnaissance (Nmap)"							#DONE
+echo -e "\t(4) Parsing Fields Of A Dump"					#N/A
+echo -e "\t(5) System Information"						#HALF WAY done
+echo -e "\t(6) Forensic Scripts"							#partial 
+echo -e "\t(7) Exploitation Menu"								#not there
+echo -e "\t(8) Post-Exploitation Menu"								#not there
+echo -e "\t(9) Firewall (IP tables)"									#Almost there
 echo -e "\t(0) Exit Menu"
 echo -n "Please enter your selection: "
 read choice
