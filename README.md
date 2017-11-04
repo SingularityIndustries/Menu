@@ -13,8 +13,7 @@
     - Post-Exploitation Menu
     - Firewall Config (IPtables)
 
-  # PLEASE FEEL FREE TO LEAVE A COMMENT AND/OR PULL REQUEST 
-  
+  # PLEASE LEAVE A COMMENT/PULL REQUEST 
   CURRENT PROGRESS OF CONVERTING IT INTO C++ == 20%
   
   SCRIPT INFO 
@@ -22,10 +21,7 @@
   DOR = 2017-11-25
   COMPANY = SINGULARITY INDUSTRIES
   
-  ##################################  
-  # BRIEF DESCRIPTION OF EACH MENU #
-  ##################################
-  
+  # BRIEF DESCRIPTION OF EACH MENU 
   Encrypting/ Decrypting a File
       dfv
   
