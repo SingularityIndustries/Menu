@@ -1,18 +1,21 @@
 #!/bin/bash
+echo "Singularity Industries Banner"
+                                                        ## Command for push enter to continue
 
+                                                        ## Command for OS detection
 while :
 do
-echo "Main Menu:"
-echo -e "\t(1) Encrypting/ Decrypting A File"							#Done needs debugging
-echo -e "\t(2) SSH Menu"											#Clean up
-echo -e "\t(3) Reconnaissance (Nmap)"							#DONE
-echo -e "\t(4) Parsing Fields Of A Dump"					#N/A
-echo -e "\t(5) System Information"						#HALF WAY done
-echo -e "\t(6) Forensic Scripts"							#partial 
-echo -e "\t(7) Exploitation Menu"								#not there
-echo -e "\t(8) Post-Exploitation Menu"								#not there
-echo -e "\t(9) Firewall (IP tables)"									#Almost there
-echo -e "\t(0) Exit Menu"
+echo "Main Menu:"                                       ###################################
+echo -e "\t(1) Encrypting/ Decrypting A File"			## DONE NEEDS TO BE DEBUGGED     ##
+echo -e "\t(2) SSH Menu"								## ONE option needs command      ##
+echo -e "\t(3) Reconnaissance (Nmap)"					## DONE NEEDS TO BE DEBUGGED     ##
+echo -e "\t(4) Parsing Fields Of A Dump"				## ALL options needs a command   ##
+echo -e "\t(5) System Information"						## DONE NEEDS TO BE DEBUGGED     ##
+echo -e "\t(6) Forensic Scripts"					    ## 3 EMPTY options               ##
+echo -e "\t(7) Exploitation Menu"						## ALL EMPTY options             ##
+echo -e "\t(8) Post-Exploitation Menu"					## ALL EMPTY options             ##
+echo -e "\t(9) Firewall (IP tables)"					## 1 command needs to be fixed   ##
+echo -e "\t(0) Exit Menu"                               ###################################
 echo -n "Please enter your selection: "
 read choice
 case $choice in
@@ -27,41 +30,43 @@ case $choice in
     read choice1
     case $choice1 in
         "a"|"A")
-			echo "Insert the path to the soon to be encrypted file."
-			read encryption
-			echo ""
-			echo "Save the file as what?"
-			read outputfile
-			echo ""
-			sudo -s openssl aes-256-cbc -a -salt -in $encryption -out $outputfile
-			echo "--------------------------"
-			echo "Deleting original file now. Standby...."
-			rm $encryption
-			echo "--------------------------"
-			echo "Your file has been sucessfully encrypted. Old file has been removed"
-			echo "====================================================================";;
+		echo "Insert the path to the soon to be encrypted file."
+		read encryption
+		echo ""
+		echo "What do you want to save the file as?"
+		read outputfile
+		echo ""
+		sudo -s openssl aes-256-cbc -a -salt -in $encryption -out $outputfile
+		echo "--------------------------"
+		echo "Deleting original file now. Standby...."
+		rm $encryption
+		echo "--------------------------"
+		echo "Your file has been sucessfully encrypted. Old file has been removed"
+		echo "===================================================================="
+        ;;
 
         "b"|"B")
-			echo "What file do you want to decrypt?"
-			read $decryption
-				echo ""
-				echo "Save the decypted file as?"
-				read newfile
-				sudo -s openssl aes-256-cbc -d -a -in $decryption -out $newfile
-				echo "--------------------------------------------------------"
-			echo "Your file has been decrypted. Your file is below"
-				echo ""
-				echo ""
-				cat $newfile
-				echo "========================================================";;
-	#	"c"|"C")
-	#	break
-	#	;;
-    #        *)
-	#		echo ""
-     #       echo "Your selection is invalid, please try again."
-	#	echo ""
-     #       ;;
+		echo "What file do you want to decrypt?"
+		read $decryption
+		echo ""
+		echo "Save the decypted file as?"
+		read newfile
+		sudo -s openssl aes-256-cbc -d -a -in $decryption -out $newfile
+		echo "--------------------------------------------------------"
+		echo "Your file has been decrypted. Your file is below"
+		echo ""
+		echo ""
+		cat $newfile
+		echo "========================================================"
+        ;;
+		
+		"c"|"C")
+		break
+		;;
+            
+			*)
+            echo "Your selection is invalid, please try again."
+            ;;
     esac
     done
 	;;
@@ -70,8 +75,8 @@ case $choice in
     while :
     do
     echo "SSH Menu:"
-    echo -e "\t(a) SSH transfer from local to remote host"
-	echo -e "\t(b) SSH transfer from remote to local host"
+    echo -e "\t(a) SSH into a remote host"
+	echo -e "\t(b) SSH transfer"
 	echo -e "\t(c) Turn SSH service ON"
 	echo -e "\t(d) Turn SSH service OFF"
 	echo -e "\t(e) RESTART SSH service"
@@ -93,62 +98,76 @@ case $choice in
 		echo ""
 		sudo ssh $username@$ipaddress
         ;;
-        "b"|"B")
+        
+		"b"|"B")
 		while :
 		do
 		echo "SSH FIle Trasfer Menu"
-		echo -e "\t(a) SSH file from remote to local"
-		echo -e "\t(b) SSH from local to remote"
-		echo -e "\t(f) Return to Main Menu"
+		echo -e "\t(1) SSH file from remote to local"
+		echo -e "\t(2) SSH file from local machine to remote"
+		echo -e "\t(3) Return to Main Menu"
 		read $sshchoice
 		case $sshchoice in
-			"a"|"A")
-				echo "SSH File Transfer from remote to local  Start"
-				echo "======================="
-				echo "Please enter the username"
-				read $usernamessh1
-				echo ""
-				echo "Username : $usernamessh1 "
-				echo ""
-				echo "Please enter the domain ip"
-				read $sshdomainip
-				echo ""
-				echo "IP address : $sshdomainip "
-				echo ""
-				echo "What is the document name?"
-				read $document1name
-				echo ""
-				echo "Document 1 name: $document1name"
-				echo ""
-				echo "Where do you want to save this document? Please enter the path"
-				read $path1
-				echo "This is the path: $path1 "
-				scp $usernamessh1@$sshdomainip:$document1name $path1
-			esac
-		done
+			"1"|"1")
+			echo "SSH File Transfer from remote to local Start"
+			echo "======================="
+			echo "Please enter the username"
+			read $usernamessh1
+			echo ""
+			echo "Username : $usernamessh1 "
+			echo ""
+			echo "Please enter the domain ip"
+			read $sshdomainip
+			echo ""
+			echo "IP address : $sshdomainip "
+			echo ""
+			echo "What is the document name?"
+			read $document1name
+			echo ""
+			echo "Document 1 name: $document1name"
+			echo ""
+			echo "Where do you want to save this document? Please enter the path"
+			read $path1
+			echo "This is the path: $path1 "
+			scp $usernamessh1@$sshdomainip:$document1name $path1
 
-	;;
+			"2"|"2")
+			echo "What file do you want to ssh from remote machine?"
+            echo "THIS MAY REQUIRE ADMIN PRIVLEDGES"
+			read localsshfile
+											                                        # Command NEEDED
+			"3"|"3")
+			break
+		esac
+		done
+		;;
+
+
 		"c"|"C")
-			echo "Starting ssh services"
-			sudo service ssh start
-			sudo service ssh status
-			q
+		echo "Starting SSH services"
+		sudo service ssh start
+		sudo service ssh status
+		q
 		;;
+
 		"d"|"D")
-			echo "Ending SSH services"
-			sudo service ssh stop
-			sudo service ssh status
-			q
+		echo "Ending SSH services"
+		sudo service ssh stop
+		sudo service ssh status
+		q
 		;;
+
 		"e"|"E")
-			sudo service ssh restart
+		echo "Restarting SSH services"
+		sudo service ssh restart
 		;;
+
 		"f"|"F")
 		break
 		;;
-            *)
+           
+		    *)
             echo "Your selection is invalid, please try again."
-            ;;
     esac
     done
     ;;
@@ -174,7 +193,8 @@ case $choice in
 		echo "Ping sweeping $scanrange"
 		sudo nmap -sn $scanrange
         ;;
-        "d"|"D")
+        
+		"d"|"D")
 		echo "Conductiong IDS evasion, stand by."
 		echo "I need a IP address"
 		read scanrange
@@ -184,7 +204,8 @@ case $choice in
 		echo "Scanning $scanrange"
 		sudo nmap -sS -v -T3 $scanrange > $outputfile
         ;;
-	"e"|"E")
+		
+		"e"|"E")
 		echo "Loud scan. Lets kick down the door!"
 		echo "Give me the IP address or range"
 		read scanrange
@@ -194,9 +215,11 @@ case $choice in
 		echo "Kicking down the $scanrange domain"
 		sudo nmap -A -p- -T4 -v $scanrange > $outputfile
 		;;
+		
 		"f"|"F")
 		break
 		;;
+           
             *)
             echo "Your selection is invalid, please try again."
             ;;
@@ -208,22 +231,32 @@ case $choice in
     while :
     do
     echo "Parsing Menu:"
-    echo -e "\t(a) Parsing Test1"
-	echo -e "\t(b) Parsing Test2"
-	echo -e "\t(c) Parsing Test3"
+    echo -e "\t(a) Parse a Word or IP"
+	echo -e "\t(b) Parse a Specific Text Field"
+	echo -e "\t(c) Redact a File"
     echo -e "\t(d) Return to Main Menu"
     echo -n "Enter your selection: "
     read choice4
     case $choice4 in
         "a"|"A")
+		echo "What What word or IP do you want to filer?"
+		read ipword
+													                    	## Command NEEDED
         ;;
         "b"|"B")
+		echo "What field do you want to filter? (from left-right)"
+		read fieldnumber
+													                    	## Command NEEDED
         ;;
 		"c"|"C")
+		echo "What file do you want to redact? (Enter file path)"
+		read filepath
+											                            	## Command NEEDED TO Random fields
 		;;
 		"d"|"D")
 		break
 		;;
+
  			*)
             echo "Your selection is invalid, please try again."
             ;;
@@ -251,36 +284,37 @@ case $choice in
 		hostname
 		echo ""
         ;;
-        "b"|"B")
+        
+		"b"|"B")
 		echo "Getting Current User"
 		echo ""
 		whoami
 		pwd
 		echo ""
         ;;
-	"c"|"C")
-		echo "Grabbing Current System Time"
+
+	    "c"|"C")
+		echo "Grabbing the Current System Time"
 		echo ""
 		date
 		echo ""
 		;;
-	"d"|"D")
+
+	    "d"|"D")
 		echo "Kernal Version"
 		echo ""
 		sudo uname -a
 		echo ""
 		echo ""
 		;;
-	"e"|"E")
+
+	    "e"|"E")
 		echo "Grabbing all active users"
 		echo ""
 		sudo cat /etc/passwd | grep /bin/bash
 		;;
-	"f"|"F")
-		;;
-	"g"|"G")
-		;;
-	"h"|"H")
+
+	    "f"|"F")
 		break
 		;;
 
@@ -309,6 +343,7 @@ case $choice in
 		read devicepath
 		sudo sudo fdisk -l $devicepath
         ;;
+        
         "b"|"B")
 		echo "Creating a forensic image"
 		echo ""
@@ -323,15 +358,23 @@ case $choice in
 		echo "Well, here we go"
 		sudo dc3dd if=$devicepath1 hash=md5 of=$devicepath2
         ;;
-		"c"|"C")
+		
+        "c"|"C")
+                                                     ## Insert option
+        ;;
+		
+        "d"|"D")
+                                                          ## Insert option
 		;;
-		"d"|"D")
+		
+        "e"|"E")
+                                                     ## Insert option
 		;;
-		"e"|"E")
-		;;
-		"f"|"F")
+		
+        "f"|"F")
 		break
 		;;
+            
             *)
             echo "Your selection is invalid, please try again."
             ;;
@@ -353,18 +396,29 @@ case $choice in
     read choice7
     case $choice7 in
         "a"|"A")
+                                                          ## Insert option
         ;;
+        
         "b"|"B")
+                                                          ## Insert option
         ;;
-		"c"|"C")
+		
+        "c"|"C")
+                                                          ## Insert option
 		;;
-		"d"|"D")
+		
+        "d"|"D")
+                                                          ## Insert option
 		;;
-		"e"|"E")
+		
+        "e"|"E")
+                                                          ## Insert option
 		;;
-		"f"|"F")
+		
+        "f"|"F")
 		break
 		;;
+            
             *)
             echo "Your selection is invalid, please try again."
             ;;
@@ -388,19 +442,29 @@ case $choice in
         "a"|"A")
 		echo "Creating a TCP Backdoor"
 		echo ""
-
+                                                  ## Insert command
         ;;
+        
         "b"|"B")
+                                                 ## Insert option
         ;;
-		"c"|"C")
+		
+        "c"|"C")
+                                                 ## Insert option
 		;;
-		"d"|"D")
+		
+        "d"|"D")
+                                                 ## Insert option
 		;;
-		"e"|"E")
+		
+        "e"|"E")
+                                                ## Insert option
 		;;
-		"f"|"F")
+		
+        "f"|"F")
 		break
 		;;
+           
             *)
             echo "Your selection is invalid, please try again."
             ;;
@@ -411,12 +475,13 @@ case $choice in
 	"9"|"9")
     while :
     do
-    echo "Quick firewall config (linux):"
+    echo "Quick Firewall Configurations:"
+    echo "This will require OS=LINUX"
     echo -e "\t(a) ALL in one firewall config"
 	echo -e "\t(b) Dropping all null packets"
 	echo -e "\t(c) Blocking Syn Flood"
 	echo -e "\t(d) Block XMAS scans"
-	echo -e "\t(e) Test5"
+	echo -e "\t(e) Blocking SSH Brute Force"
     echo -e "\t(f) Return to Main Menu"
     echo -n "Enter your selection: "
     read choice8
@@ -434,7 +499,7 @@ case $choice in
 		sudo iptables -P FORWARD DROP
 		sudo iptables -P OUTPUT ACCEPT
 		echo "Opening access for local host"
-		#THIS NEEDS FIXsudo iptables -A -i lo -j ACCEPT 
+		#sudo iptables -A -i lo -j ACCEPT                                                   ## Needs to be fixed
 		echo "Allowing established and related connections to continue"
 		sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 		echo ""
@@ -446,6 +511,7 @@ case $choice in
 		echo ""
 		sudo iptables -L -v
         ;;
+        
         "b"|"B")
 		echo "Dropping all null packets currently"
 		echo ""
@@ -453,19 +519,22 @@ case $choice in
 		sudo iptables -A input -p tcp --tcp-flags ALL NONE -j DROP
 		sudo iptables -L -v
         ;;
-	"c"|"C")
+	
+        "c"|"C")
 		echo "Block syn flooding (DDos)"
 		echo ""
 		sudo iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP
 		sudo iptables -L -v
 		;;
-	"d"|"D")
+	
+        "d"|"D")
 		echo "Block XMAS scans on the machine"
 		echo ""
 		sudo iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP
 		sudo iptables -L -v
 		;;
-	"e"|"E")
+	    
+        "e"|"E")
 		echo "Blocking SSH Brute Force"
 		echo ""
 		echo "Please specifiy an interface to configure"
@@ -474,9 +543,11 @@ case $choice in
 		sudo iptables -I INPUT -p tcp --dport 22 -i $interface -m state --state NEW -m recent --update --seconds 60 --hitcount 4 -j DROP
 		sudo iptable -L -v 
 		;;
-	"f"|"F")
+	    
+        "f"|"F")
 		break
 		;;
+            
             *)
           	echo "Your selection is invalid, please try again."
             ;;
@@ -487,6 +558,7 @@ case $choice in
 	"0"|"0")
 	exit
 	;;
+
         *)
         echo "Your selection is invalid, please try again."
 		echo ""
@@ -494,3 +566,4 @@ case $choice in
 
 esac
 done
+;;
