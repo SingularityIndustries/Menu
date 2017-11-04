@@ -80,13 +80,54 @@ case $choice in
     read choice2
     case $choice2 in
         "a"|"A")
-		echo "What is the username and ip address of the server? (ex. bobothefool@ipadress)"
-		read $sshaddress
-		sudo ssh $sshaddress
+		echo "What is the username? (ex. bobothefool@ipadress)"
+		read $username
+		echo ""
+		echo "Username: $username"
+		echo ""
+		echo ""
+		echo "Enter the Ip Address"
+		read $ipaddress
+		echo ""
+		echo "IP address: $ipaddress "
+		echo ""
+		sudo ssh $username@$ipaddress
         ;;
         "b"|"B")
-		echo "Still didnt finish this"
-        ;;
+		while :
+		do
+		echo "SSH FIle Trasfer Menu"
+		echo -e "\t(a) SSH file from remote to local"
+		echo -e "\t(b) SSH from local to remote"
+		echo -e "\t(f) Return to Main Menu"
+		read $sshchoice
+		case $sshchoice in
+			"a"|"A")
+				echo "SSH File Transfer from remote to local  Start"
+				echo "======================="
+				echo "Please enter the username"
+				read $usernamessh1
+				echo ""
+				echo "Username : $usernamessh1 "
+				echo ""
+				echo "Please enter the domain ip"
+				read $sshdomainip
+				echo ""
+				echo "IP address : $sshdomainip "
+				echo ""
+				echo "What is the document name?"
+				read $document1name
+				echo ""
+				echo "Document 1 name: $document1name"
+				echo ""
+				echo "Where do you want to save this document? Please enter the path"
+				read $path1
+				echo "This is the path: $path1 "
+				scp $usernamessh1@$sshdomainip:$document1name $path1
+			esac
+		done
+
+	;;
 		"c"|"C")
 			echo "Starting ssh services"
 			sudo service ssh start
