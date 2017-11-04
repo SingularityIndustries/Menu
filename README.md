@@ -1,6 +1,6 @@
 # Menu
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                                Singularity Industries
+ #                              Singularity Industries
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
    # Menu Overview:
     - Encrypting/ Decrypting a File
