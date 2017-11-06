@@ -1,0 +1,27 @@
+`GraylogTest` <- read.csv(file="C:/Users/matth/AppData/Local/Temp/GraylogTest.csv.utf8", header=TRUE, row.names=NULL, encoding="UTF-8", sep=",", dec=".", quote="\"", comment.char="")
+colnames(GraylogTest) <- c("timestamp", "source", "message", "severuty", "Username")
+validation_index <- createDataPartition(datasets$Test, p=0.80, list=FALSE)
+dim(datasets)
+dim(GraylogTest)
+sapply(datasets, class)
+head(datasets)
+sapply(GraylogTest, class)
+head(GraylogTest)
+validation_index <- createData
+levels(GraylogTest$source)
+levels(GraylogTest$ser)
+levels(GraylogTest$severuty)
+levels(GraylogTest$Username)
+percentage <- prop.table(table(GraylogTest$Username))*100
+cbind(frequency=table(GraylogTest$Username), percentage=percentage)
+summary(GraylogTest)
+x <- GraylogTest[,1:4]
+y <- GraylogTest[,5]
+par(mfrow=c(1,4))
+for (i in 1:4) {     boxplot(x[, i], main = names(GraylogTest)[i])  }
+for (i in 1:4) {     boxplot(x[, i], main = names(GraylogTest$Username)[i])  }
+for (i in 1:4) {     boxplot(x[, i], main = names(GraylogTest$Username)[i])  }
+plot(y)
+plot(x)
+featurePlot(x=x, y=y, plot=ellipse)
+`GraylogTest` <- read.csv(file="C:/Users/matth/AppData/Local/Temp/GraylogTest.csv.utf8", header=TRUE, row.names=NULL, encoding="UTF-8", sep=",", dec=".", quote="\"", comment.char="")
