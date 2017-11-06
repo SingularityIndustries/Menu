@@ -21,28 +21,40 @@
   
   # BRIEF DESCRIPTION OF EACH MENU 
   Encrypting/ Decrypting a File
-      dfv
+      openssl encrypt file or directory with user input
   
   SSH Menu
-      ws
+      ssh start
+	ssh stop
+	ssh restart
+	ssh from remote computer
+	ssh to remote computer
   
   Reconnaissance Menu (Nmap)
-      sdg
+      nmap scripts
   
   Parsing Menu
-      sdg
+      perl parsing html
       
   System Information
-      dsf
+      hostname
+	date
+	username
+	users on machine
   
   Forensics Menu
-      dfg
+      create image
+	partition view
   
   Exploitation Menu
-      sdg
+      msf install
+	msf console
+	find exploit
+	
   
   Post-Exploitation Menu
-      dfg
+      netcat 
+	custom reverse shell
   
   Firewall Config (IPtables)
-      zdc
+      quick firewall configuration
