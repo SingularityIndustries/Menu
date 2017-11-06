@@ -54,10 +54,25 @@ else
    }
  
 # Run your code that needs to be elevated here
-wevtutil -el | ForEach-Object{Get-EventLog -LogName 'Kaspersky Event Log' | Export-Csv -Path C:\Users\AMAMATTH.KNOWN-UNIVERSE\Desktop  -Append} 
+#This will get al the security logs and explot them. This will be the last powershell script ran on the computer until debugged.
+
+get-wmiobject -query "Select * from Win32_NTLogEvent Where Logfile = 'Security'"
+
+If you want to check on multiple computers, you can do this:
+
+$computers=get-content computers.txt #computers.txt is a list with computernames, one name on each row ($computers is a collection with computernames to save)
+foreach($computer in $computers)
+{
+    get-wmiobject -query "Select * from Win32_NTLogEvent Where Logfile = 'Security'" -computername $computer | export-csv $computer.csv -NoTypeInformation
+}
+
+You can also look for specific events by changing the Where part of the Get-WmiObject query. For example like this
+(all on one line)
+
+get-wmiobject -query "Select * from Win32_NTLogEvent Where Logfile = 'Security' and EventCode = 644 and EventType=4" -computername $computer | export-csv $computer.csv -NoTypeInformation
 
 
 
-$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+#$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 #Admin requried for scipt
  
