@@ -163,14 +163,12 @@ case $choice in
 		echo "Starting SSH services"
 		sudo service ssh start
 		sudo service ssh status
-		q
 		;;
 
 		"d"|"D")
 		echo "Ending SSH services"
 		sudo service ssh stop
 		sudo service ssh status
-		q
 		;;
 
 		"e"|"E")
@@ -209,8 +207,11 @@ case $choice in
 		echo "The IP address or range is what"
 		echo ""
 		read $scanrange
+		echo ""
+		echo "What would you like to save the output as? "
+		read $savefiletext
 		echo "Ping sweeping $scanrange"
-		sudo nmap -sn $scanrange
+		sudo nmap -sn $scanrange > $savefiletext
         ;;
         
 		"d"|"D")
@@ -350,15 +351,17 @@ case $choice in
     echo "Forensic Script Menu:"
     echo -e "\t(a) Partition View"
 	echo -e "\t(b) Create Forensic Image"
-	echo -e "\t(c) Open"
-	echo -e "\t(d) Open"
+	echo -e "\t(c) Create SHA-1 hash of file"
+	echo -e "\t(d) Data Carving"
 	echo -e "\t(e) Open"
     echo -e "\t(f) Return to Main Menu"
     echo -n "Enter your selection: "
     read choice6
     case $choice6 in
         "a"|"A")
-		echo "Enter path to Device"
+		echo "Viewing a partiticion"
+		echo ""
+		echo "Enter path to Device ie. /dev/sdX where X is the letter of the drive"
 		read devicepath
 		sudo sudo fdisk -l $devicepath
         ;;
@@ -378,11 +381,37 @@ case $choice in
 		sudo dc3dd if=$devicepath1 hash=md5 of=$devicepath2
         ;;
 		
-        "c"|"C")
-                                                     ## Insert option
+        "c"|"C") 
+		echo "Creating SHA-1 hash of file"
+		echo ""
+		echo "What is the file you want to hash."
+		read filename
+		sha1sum $filename 
+
         ;;
 		
         "d"|"D")
+		echo ""
+		echo "Data Carving. Careful! We will take our time with this script to ensure that it runs correctly."
+		echo
+		echo "Please enter the source image path"
+		read sourceimage
+		echo ""
+		echo "What is the byte size?"
+		read bytesize
+		echo ""
+		echo "CAUTION: Where is the end of the boot sector? (Use fstat)"
+		echo ""
+		echo sectorend
+		echo "Where do you want to save the file as?"
+		read carveddata
+		echo ""
+		echo ""
+		sudo dc3dd if=$sourceimage bs=$bytesize skip=$sectorend of=$carveddata
+		echo "hashing the carved data"
+		echo ""
+		md5sum $carveddata
+		sha1sum $carveddata
                                                           ## Insert option
 		;;
 		
@@ -551,6 +580,7 @@ case $choice in
 		echo ""
 		sudo iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP
 		sudo iptables -L -v
+		echo "Complete"
 		;;
 	    
         "e"|"E")
