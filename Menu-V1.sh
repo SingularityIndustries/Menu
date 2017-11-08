@@ -130,7 +130,8 @@ case $choice in
 			read $path1
 			echo "This is the path: $path1 "
 			scp $usernamessh1@$sshdomainip:$document1name $path1
-
+			;;
+			
 			"2"|"2")
 			echo "What file do you want to ssh to remote machine?"
             echo "THIS MAY REQUIRE ADMIN PRIVLEDGES"
@@ -151,7 +152,8 @@ case $choice in
 			echo "Path: $savefilepath"
 			echo "Starting SSH"
 			scp $localsshfile $remoteusername@$remotedomainip:$savefilepath
-											                                        # Command NEEDED
+			
+			;;								                                        # Command NEEDED
 			"3"|"3")
 			break
 		esac
@@ -434,8 +436,9 @@ case $choice in
     while :
     do
     echo "Exploitation Menu:"
-    echo -e "\t(a) Encrypted Payload"
-	echo -e "\t(b) Test1"
+	echo "This will require the installation of MSF Venom and its modules"
+    echo -e "\t(a) List Payloads"
+	echo -e "\t(b) Nmap Scan (Database)"
 	echo -e "\t(c) Test2"
 	echo -e "\t(d) Test3"
 	echo -e "\t(e) Test4"
@@ -444,11 +447,22 @@ case $choice in
     read choice7
     case $choice7 in
         "a"|"A")
-                                                          ## Insert option
+		echo "Listing payloads"
+		msfvenom -l
+		echo ""
         ;;
         
         "b"|"B")
-                                                          ## Insert option
+		echo "Conducting a nmap scan and saving to a database"
+		echo ""
+		msfconsole
+		echo ""
+		echo "What is the IP range you would like to scan?"
+		echo ""
+		echo "Example 192.168.50.1 or 192.168.50.0/24"
+		read $iprange
+		echo ""
+		db_nmap -sS -A $iprange
         ;;
 		
         "c"|"C")
