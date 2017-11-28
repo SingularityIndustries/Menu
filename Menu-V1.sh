@@ -6,15 +6,15 @@ echo "Singularity Industries Banner"
 while :
 do
 echo "Main Menu:"                                       ###################################
-echo -e "\t(1) Encrypting/ Decrypting A File"			## DONE NEEDS TO BE DEBUGGED     ##
-echo -e "\t(2) SSH Menu"								## ONE option needs command      ##
-echo -e "\t(3) Reconnaissance (Nmap)"					## DONE NEEDS TO BE DEBUGGED     ##
-echo -e "\t(4) Parsing Fields Of A Dump"				## ALL options needs a command   ##
-echo -e "\t(5) System Information"						## DONE NEEDS TO BE DEBUGGED     ##
-echo -e "\t(6) Forensic Scripts"					    ## 3 EMPTY options               ##
-echo -e "\t(7) Exploitation Menu"						## ALL EMPTY options             ##
-echo -e "\t(8) Post-Exploitation Menu"					## ALL EMPTY options             ##
-echo -e "\t(9) Firewall (IP tables)"					## 1 command needs to be fixed   ##
+echo -e "\t(1) Encrypting/ Decrypting A File"		#Done
+echo -e "\t(2) SSH Menu"				## ONE option needs command      ##
+echo -e "\t(3) Reconnaissance (Nmap)"			## DONE NEEDS TO BE DEBUGGED     ##
+echo -e "\t(4) Parsing Fields Of A Dump"		## ALL options needs a command   ##
+echo -e "\t(5) System Information"			## DONE NEEDS TO BE DEBUGGED     ##
+echo -e "\t(6) Forensic Scripts"			## Done              ##
+echo -e "\t(7) Exploitation Menu"			## ALL EMPTY options Researching ##
+echo -e "\t(8) Post-Exploitation Menu"			## ALL EMPTY options             ##
+echo -e "\t(9) Firewall (IP tables)"			## 1 command needs to be fixed   ##
 echo -e "\t(0) Exit Menu"                               ###################################
 echo -n "Please enter your selection: "
 read choice
@@ -131,7 +131,7 @@ case $choice in
 			echo "This is the path: $path1 "
 			scp $usernamessh1@$sshdomainip:$document1name $path1
 			;;
-			
+
 			"2"|"2")
 			echo "What file do you want to ssh to remote machine?"
             echo "THIS MAY REQUIRE ADMIN PRIVLEDGES"
@@ -263,6 +263,7 @@ case $choice in
         "a"|"A")
 		echo "What What word or IP do you want to filer?"
 		read ipword
+		
 													                    	## Command NEEDED
         ;;
         "b"|"B")
